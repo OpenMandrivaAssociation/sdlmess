@@ -45,7 +45,7 @@ tar xvjf %{SOURCE3}
 find . -type f -not -name "*.png" -not -name "*.gif" -not -name "*.bmp" \
  -not -name "*.ico" -not -name "*.zip" | xargs perl -pi -e 's/\r\n?/\n/g'
 %if %{uversion}
-%(for ((i=1 ; i<=%{uversion} ; i++)) ; do echo "unzip -qq %{_sourcedir}/mess%{sversion}u${i}_diff.zip" ; echo "perl -pi -e 's/\r\n/\n/g' mess%{sversion}u${i}.diff" ; echo "patch -p0 -s --fuzz=0 -E < mess%{sversion}u${i}.diff" ; done)
+%(for ((i=1 ; i<=%{uversion} ; i++)) ; do echo "unzip -qq %{_sourcedir}/mess%{sversion}u${i}_diff.zip" ; echo "perl -pi -e 's/\r\n/\n/g' mess%{sversion}u${i}.diff" ; echo "patch -p0 -N -s --fuzz=0 -E < mess%{sversion}u${i}.diff" ; done)
 %endif
 
 %build
