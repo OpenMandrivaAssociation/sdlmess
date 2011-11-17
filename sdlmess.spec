@@ -27,6 +27,9 @@ BuildRequires:	libxinerama-devel
 BuildRequires:	gtk2-devel
 BuildRequires:	libGConf2-devel
 BuildRequires:	perl
+# Workaround
+BuildRequires:	libxrender-devel >= 0.9.6
+
 #ExclusiveArch:	%ix86 x86_64 ppc
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
