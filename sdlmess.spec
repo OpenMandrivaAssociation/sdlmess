@@ -1,8 +1,8 @@
 Name:			sdlmess
-Version:		0.144
+Version:		0.145
 #define sversion	%(sed -e "s/\\.//" <<<%{version})
-%define sversion        %(sed -r -e "s/\\.//" -e "s/(.*)u(.)/\\1/" <<<%{version})
-%define uversion        %(sed -r -e "s/(.*u)(.)/\\2/;t;c\\0" <<<%{version})
+%define sversion	%(sed -r -e "s/\\.//" -e "s/(.*)u(.)/\\1/" <<<%{version})
+%define uversion	%(sed -r -e "s/(.*u)(.)/\\2/;t;c\\0" <<<%{version})
 Release:		%mkrel 1
 
 Summary:	SDL MESS emulates a large variety of different systems
@@ -29,9 +29,6 @@ BuildRequires:	libGConf2-devel
 BuildRequires:	perl
 # Workaround
 BuildRequires:	libxrender-devel >= 0.9.6
-
-#ExclusiveArch:	%ix86 x86_64 ppc
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 SDL MESS is a free emulator which emulates a large variety of different 
@@ -65,50 +62,49 @@ find . -type f -not -name "*.png" -not -name "*.gif" -not -name "*.bmp" \
  NOWERROR=1 \
  BUILD_ZLIB= \
  BUILD_EXPAT= \
- OPT_FLAGS="%optflags"
+ OPT_FLAGS="%{optflags}"
 
 %install
-rm -rf %{buildroot}
-install -d -m 755 %{buildroot}%{_gamesbindir}
-install -m 755 sdlmess* %{buildroot}/%{_gamesbindir}/sdlmess.real
+%__rm -rf %{buildroot}
+%__install -d -m 755 %{buildroot}%{_gamesbindir}
+%__install -m 755 sdlmess* %{buildroot}/%{_gamesbindir}/sdlmess.real
 
 #various directories and files
-install -d -m 755 %{buildroot}%{_gamesdatadir}/sdlmess/artwork
-install -m 644 artwork/* %{buildroot}%{_gamesdatadir}/sdlmess/artwork/
-install -d -m 755 %{buildroot}%{_gamesdatadir}/sdlmess/hash
-install -m 644 hash/* %{buildroot}%{_gamesdatadir}/sdlmess/hash/
+%__install -d -m 755 %{buildroot}%{_gamesdatadir}/sdlmess/artwork
+%__install -m 644 artwork/* %{buildroot}%{_gamesdatadir}/sdlmess/artwork/
+%__install -d -m 755 %{buildroot}%{_gamesdatadir}/sdlmess/hash
+%__install -m 644 hash/* %{buildroot}%{_gamesdatadir}/sdlmess/hash/
 
 #keymaps
-install -d -m 755 %{buildroot}%{_gamesdatadir}/sdlmess/keymaps
-install -m 644 keymaps/* %{buildroot}%{_gamesdatadir}/sdlmess/keymaps/
+%__install -d -m 755 %{buildroot}%{_gamesdatadir}/sdlmess/keymaps
+%__install -m 644 keymaps/* %{buildroot}%{_gamesdatadir}/sdlmess/keymaps/
 
 #font
-install -m 644 ui.bdf %{buildroot}%{_gamesdatadir}/sdlmess/
+%__install -m 644 ui.bdf %{buildroot}%{_gamesdatadir}/sdlmess/
 
 #sysinfo.dat
-install -m 644 sysinfo.dat %{buildroot}%{_gamesdatadir}/sdlmess/
+%__install -m 644 sysinfo.dat %{buildroot}%{_gamesdatadir}/sdlmess/
 
 #cfg, diff, nvram, obj, snap in home only
 
 #tools
 #useful to manage roms
-install -m 755 chdman %{buildroot}%{_gamesbindir}/chdman-sdlmess
-install -m 755 romcmp %{buildroot}%{_gamesbindir}/romcmp-sdlmess
+%__install -m 755 chdman %{buildroot}%{_gamesbindir}/chdman-sdlmess
+%__install -m 755 romcmp %{buildroot}%{_gamesbindir}/romcmp-sdlmess
 #useful to create a new keymap
-install -m 755 testkeys %{buildroot}%{_gamesbindir}/testkeys-sdlmess
+%__install -m 755 testkeys %{buildroot}%{_gamesbindir}/testkeys-sdlmess
 #other tools : dat2html, messtest, messdocs, imgtool, jedutil, makemeta, regrep, srcclean
 
 #wrapper
-install -m 755 %{SOURCE2} %{buildroot}%{_gamesbindir}/sdlmess
+%__install -m 755 %{SOURCE2} %{buildroot}%{_gamesbindir}/sdlmess
 
 %files
 %defattr(0644,root,root,0755)
 %doc docs/*
 %attr(0755,root,games) %{_gamesbindir}/sdlmess*
 %attr(0755,root,games) %{_gamesbindir}/*-sdlmess
-#{_mandir}/man1/sdlmess.1*
 %{_gamesdatadir}/sdlmess
 
 %clean
-rm -rf %{buildroot}
+%__rm -rf %{buildroot}
 
