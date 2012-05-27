@@ -17,7 +17,10 @@ Source3:	sdlmame-extra.tar.bz2
 #Sources 10+ : u1, u2 etc zip files containing changelogs and patches (if any)
 %if %{uversion}
 %(for ((i=1 ; i<=%{uversion} ; i++)) ; do echo Source$((9+i)):  http://www.mess.org/files/mess%{sversion}u${i}_diff.zip ;done)
-%endif 
+%endif
+
+# Needed to workaround gcc 4.4.x x86_64 internal compiler error
+Patch0:		sdlmame-0.146-gcc4.4-ice.patch
 
 BuildRequires:	SDL-devel
 BuildRequires:	SDL_ttf-devel
@@ -39,6 +42,12 @@ It uses SDL, and is based on MESS.
 %setup -c -n %{name}-%{version} -q
 unzip -qq mame.zip
 unzip -qqo %{SOURCE1}
+%if %{mdvver} < 201100
+%ifarch x86_64
+%patch0 -p1
+%endif
+%endif
+
 #files missing : ui.bdf, keymaps
 tar xvjf %{SOURCE3}
 #fixes doc line endings, + needed before patching
