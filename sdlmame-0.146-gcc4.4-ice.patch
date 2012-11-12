@@ -1,0 +1,12 @@
+diff -urN sdlmame-0.146/src/emu/emu.mak sdlmame-0.146-patched/src/emu/emu.mak
+--- sdlmame-0.146/src/emu/emu.mak	2012-05-27 11:21:30.449383001 +1100
++++ sdlmame-0.146-patched/src/emu/emu.mak	2012-05-27 11:24:40.060141002 +1100
+@@ -125,6 +125,8 @@
+ 	$(EMUOBJ)/profiler.o \
+ 	$(OSDOBJ)/osdepend.o \
+ 	$(OSDOBJ)/osdnet.o
++
++$(EMUOBJ)/ioport.o : CCOMFLAGS += -O0
+ 
+ EMUSOUNDOBJS = \
+ 	$(EMUOBJ)/sound/filter.o \
