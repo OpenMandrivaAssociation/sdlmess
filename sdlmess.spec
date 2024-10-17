@@ -8,7 +8,7 @@ Release:		%mkrel 1
 Summary:	SDL MESS emulates a large variety of different systems
 License:	Freeware
 Group:		Emulators
-URL:		http://www.mess.org/
+URL:		https://www.mess.org/
 #http://mamedev.org/downloader.php?&file=mame%{sversion}s.zip
 Source0:	mame%{sversion}s.zip
 Source1:	http://www.mess.org/files/mess%{sversion}s.zip
