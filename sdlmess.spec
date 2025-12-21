@@ -22,6 +22,7 @@ Source3:	sdlmame-extra.tar.bz2
 # Needed to workaround gcc 4.4.x x86_64 internal compiler error
 Patch0:		sdlmame-0.146-gcc4.4-ice.patch
 
+BuildRequires:	make
 BuildRequires:	SDL-devel
 BuildRequires:	SDL_ttf-devel
 BuildRequires:	expat-devel
