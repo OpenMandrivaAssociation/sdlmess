@@ -3,7 +3,7 @@ Version:		0.146
 #define sversion	%(sed -e "s/\\.//" <<<%{version})
 %define sversion	%(sed -r -e "s/\\.//" -e "s/(.*)u(.)/\\1/" <<<%{version})
 %define uversion	%(sed -r -e "s/(.*u)(.)/\\2/;t;c\\0" <<<%{version})
-Release:		%mkrel 1
+Release:		2
 
 Summary:	SDL MESS emulates a large variety of different systems
 License:	Freeware
